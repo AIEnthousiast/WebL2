@@ -1,0 +1,148 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+
+body{
+    background-color: rgb(77, 82, 84);
+    color:rgb(196, 184, 184);
+    height: auto;
+    width: 100vw;
+    justify-content: center;
+    
+}
+
+header
+{
+    position: sticky;
+    top:0;
+    opacity: 1;
+    background-color: #433d3d ;
+    height: 10%;
+    transition: all .2s;
+    z-index: 900;
+}
+
+
+img
+{
+    z-index: 0;
+}
+.navigation
+{
+    display: flex;
+    margin: auto;
+    height: auto;
+    align-content: center;
+}
+.nav-div
+{
+    margin-left: auto;
+    margin-top: auto;
+    display: flex;
+}
+
+
+.navigation ul
+{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    vertical-align: center;
+}
+
+
+a:link,
+a:visited
+{
+    text-decoration: none;
+    color:#ffffff;
+    transition: all .5s;
+}
+a:hover
+{
+    color:black;
+
+}
+
+
+.nav-item a:link,
+.nav-item a:visited
+{
+    
+    padding: 10px 5px;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    color:white;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    transition: all .2s;
+}
+
+
+.nav-item:not(:last-child)
+{
+    border-right: 1px solid #90100d;
+}
+
+.nav-item:hover
+{
+    background-color: #90100d;
+    color: #222222
+}
+
+
+
+
+h2
+{
+    font-size: 14px;
+    padding: 5px 5px;
+    background-color: #837777;
+    text-align: center;
+}
+
+p
+{
+    padding:5px 5px;
+    font-size: 12px;
+    width: 80em;
+    text-indent: 1em;
+}
+
+
+.listing h3
+{
+    font-size: 12px;
+}
+
+
+.liste-anime li,
+.liste-manga li,
+.liste-webtoon li
+{
+    font-size: 12px;
+    list-style-type: disc;
+    
+    padding: 5px 5px;
+}
+
+
+footer{
+    bottom:0;
+    width: 100%;
+    height: 10%;
+    background: #433d3d;
+    opacity: 1;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+}
