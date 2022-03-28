@@ -18,8 +18,10 @@ header
     background-color: #433d3d ;
     transition: all .2s;
     z-index: 900;
+    padding: auto;
     height: auto;
     transition:  opacity .5s;
+    box-sizing: border-box;
 }
 
 header:hover
@@ -64,8 +66,10 @@ img
 {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     list-style: none;
     vertical-align: center;
+    padding:0px;
 }
 
 
@@ -121,13 +125,14 @@ h2
     background-color: #837777;
     text-align: center;
     width: 100%;
+    box-sizing: border-box;
 }
 
 p
 {
-    padding:5px 5px;
+    padding:0px;
     font-size: 12px;
-    width: 80em;
+    width: 100%;
     text-indent: 1em;
 }
 
@@ -157,6 +162,9 @@ article
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    width: 80vw;
+    padding-bottom: 30px;
+    padding-top:10px
 }
 
 footer{
@@ -208,4 +216,54 @@ input
 
     border-radius: 2px;
     border-width: 4px;
+}
+
+
+@media (max-width: 1300px) {
+    header{
+        opacity: 1;
+    }
+
+    footer{
+        opacity: 1;
+    }
+
+}
+
+
+@media (max-width:720px) {
+
+    header
+    {
+        height: 10%;
+    }
+    .navigation ul{
+        flex-direction: column; 
+        align-items: center; 
+    }
+    .nav-item{
+        padding-bottom: 5px;
+        width: 100%;
+        text-align: center;
+        border-right: 0px;
+        border-bottom: 3px #90100d solid;
+    }
+
+
+    .nav-item:first-child
+    {
+        border-top: 3px #90100d solid;
+    }
+    .nav-item:not(:last-child)
+    {
+        border-right: 0px;
+        
+    }
+    .nav-item a:visited,
+    .nav-item a:link
+    {
+        font-size: 70%;
+    }
+
+
 }
