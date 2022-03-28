@@ -6,20 +6,67 @@ var checkBirthdate = false;
 var checkUserpwd = false;
 var checkUseremail = false;
 
-document.getElementById("register").addEventListener("submit", function(e) {    
 
-    console.log(checkUseremail,checkUserpwd,checkBirthdate,checkUsername);
+function submitForm(form)
+{ 
+    var xhr; 
+    console.log(form);
+    try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
+    catch (e) 
+    {
+        try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
+        catch (e2) 
+        {
+           try {  xhr = new XMLHttpRequest();  }
+           catch (e3) {  xhr = false;   }
+         }
+    }
+  
+    xhr.onreadystatechange  = function() 
+    { 
+       if(xhr.readyState  == 4)
+       {
+        if(xhr.status  == 200) 
+            alert("Good!")
+        else
+            alert(xhr.status);
+        }
+    }; 
+ 
+   xhr.open("POST", "./htbin/register.py",  true); 
+   xhr.send(form); 
+} 
+
+document.getElementById("register").addEventListener("submit", function(e) {    
+    
+    e.preventDefault()
+
+    
     if (!(checkUserpwd && checkBirthdate && checkUsername && checkUseremail))
     {
         console.log(checkUseremail,checkUserpwd,checkBirthdate,checkUsername);
-        e.preventDefault()
+    }
+    else{
+
+        try
+        {
+            xhr = new ActiveXObject("Microsoft.XMLHTTP"); // Essayer IE 
+        }
+        catch(e)   // Echec, utiliser l'objet standard 
+        {
+            xhr = new XMLHttpRequest();
+        }
+
+
+        submitForm(e.target)
+        
     }
     
 
 });
 
 
-document.getElementById("username").addEventListener("input",function(e) {
+document.getElementById("username").addEventListener("blur",function(e) {
     let username = document.getElementById("username");
 
     if (username.value.length < 6)
@@ -36,7 +83,7 @@ document.getElementById("username").addEventListener("input",function(e) {
 
 });
 
-document.getElementById("birthdate").addEventListener("input",function() {
+document.getElementById("birthdate").addEventListener("blur",function() {
     let birthdate = document.getElementById("birthdate");
 
     let birthDateString = birthdate.value.split("/").reverse().join("-");
@@ -56,7 +103,7 @@ document.getElementById("birthdate").addEventListener("input",function() {
 });
 
 
-document.getElementById("useremail").addEventListener("input", function() {
+document.getElementById("useremail").addEventListener("blur", function() {
 
     let useremail = document.getElementById("useremail");
     const emailRegex = RegExp("^[A-Za-z0-9]+.[A-Za-z0-9]+@[A-Za-z0-9]+.[A-Za-z0-9]+$");
@@ -74,7 +121,7 @@ document.getElementById("useremail").addEventListener("input", function() {
     }
 });
 
-document.getElementById("userpwd").addEventListener("input", function() {
+document.getElementById("userpwd").addEventListener("blur", function() {
 
     const pwdRegex = RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$")
 
@@ -89,4 +136,5 @@ document.getElementById("userpwd").addEventListener("input", function() {
         spans[2].innerText = ""
         checkUserpwd = true;
     }
-})
+});
+
