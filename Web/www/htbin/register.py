@@ -40,5 +40,4 @@ template_file = open('../templates/register.xhtml','r')
 template = string.Template(template_file.read())
 template_file.close()
 
-print((template.safe_substitute(data)))
-
+print(template.safe_substitute(data))

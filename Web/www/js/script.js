@@ -1,47 +1,49 @@
 var spans = document.getElementsByTagName("span")
 
-
+var xhr;
 var checkUsername = false;
 var checkBirthdate = false;
 var checkUserpwd = false;
 var checkUseremail = false;
+var isConnected = false;
 
 
-function submitForm(form)
+function submitForm(xhr)
 { 
-    var xhr; 
-    console.log(form);
-    try {  xhr = new ActiveXObject('Msxml2.XMLHTTP');   }
-    catch (e) 
-    {
-        try {   xhr = new ActiveXObject('Microsoft.XMLHTTP'); }
-        catch (e2) 
-        {
-           try {  xhr = new XMLHttpRequest();  }
-           catch (e3) {  xhr = false;   }
-         }
-    }
-  
+
+
+    var formData = new FormData(document.getElementById("register"));
+
     xhr.onreadystatechange  = function() 
     { 
-       if(xhr.readyState  == 4)
-       {
-        if(xhr.status  == 200) 
-            alert("Good!")
-        else
-            alert(xhr.status);
+        if(xhr.readyState  == 4)
+        {
+            if(xhr.status  == 200){
+                document.getElementsByTagName("html")[0].innerHTML = xhr.response;
+                console.log(xhr.response);
+            }else
+            {
+                alert(xhr.status);
+            }
         }
     }; 
  
+
+    
    xhr.open("POST", "./htbin/register.py",  true); 
-   xhr.send(form); 
+   xhr.send(formData); 
+
 } 
 
 document.getElementById("register").addEventListener("submit", function(e) {    
     
     e.preventDefault()
 
-    
+    document.getElementById("username").dispatchEvent(new Event("blur"))
+    document.getElementById("birthdate").dispatchEvent(new Event("blur"))
+    document.getElementById("useremail").dispatchEvent(new Event("blur"))
+    document.getElementById("userpwd").dispatchEvent(new Event("blur"))
+
     if (!(checkUserpwd && checkBirthdate && checkUsername && checkUseremail))
     {
         console.log(checkUseremail,checkUserpwd,checkBirthdate,checkUsername);
@@ -57,16 +59,14 @@ document.getElementById("register").addEventListener("submit", function(e) {
             xhr = new XMLHttpRequest();
         }
 
-
-        submitForm(e.target)
-        
+        submitForm(xhr);
     }
     
 
 });
 
 
-document.getElementById("username").addEventListener("blur",function(e) {
+document.getElementById("username").addEventListener("blur",function() {
     let username = document.getElementById("username");
 
     if (username.value.length < 6)
@@ -90,7 +90,6 @@ document.getElementById("birthdate").addEventListener("blur",function() {
 
     if (isNaN(Date.parse(birthDateString)))
     {
-        console.log("yolo")
         spans[0].innerHTML = "Format incorrect";
         spans[0].style.color = "red";
         checkBirthdate = false;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8"/> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -44,29 +45,34 @@
 
     </header>
 
-    <article>
 
-        <h2>Petite intro dramatique...(non)</h2>
-        <p>Avec le Covid, notre train-train quotidien s'est retrouvé chamboulé. On s'ennuie, les cours sont parfois en distanciels, les 
-        déplacements sont restreints (moins maintenant mais on est quand même assez ennuyé par tout ce qui se passe),
-        on prend l'habitude de moins sortir,.... Et il y a des gens comme moi qui ne sentent absolument aucun 
-        changement. Comment c'est possible? Facile quand on est de base blasé de la vie! Pour vous dire, je vois autant de 
-        personnes maintenant en période covid qu'il y a 3 ans, c'est à dire pas beaucoup.</p>
-        <p>Cependant, étudiant blasé ne veut pas dire inactif. Ce site vous présente mes <strong>occupations</strong> en  détail , plusieurs 
-        que j'ai découvertes durant cette période de Covid.</p>
-
-        Vous verrez mon feedback sur:
-        <ul> 
-            <li>Les mangas - webtoons - anime</li>
-            <li>Les echecs</li>
-            <li>Le skateboard</li>
-        </ul>
-
-        Et , si vous êtes cools, vous pouvez aussi vous <em>enregistrez</em> ; je promets que je respecte votre vie privée ! (surtout que 
-        je suis trop paresseux pour mettre en place du fishing).
-
+    <div class="chat-area">
         
-    </article>
+        <div id="message-log">
+            <div class = "messages-others">
+                <div class="received">
+                </div>
+                
+            </div>
+            <div class = "messages-user">
+                <div class="sent">
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="error-log"><p></p></div>
+
+        <form id="send-message" method="post">
+            <input type="text" name="msg" placeholder="Votre message ici" id="msg">
+            <button type="submit" action="./htbin/chatsend.py" >Envoyer</button>
+        </form>
+        
+    </div>
+
+    
+
+   
 
     <footer>
         Retrouvez-moi nulle part, puisque j'ai la flemme de maintenir une page sur un réseau social.
@@ -74,5 +80,8 @@
         Quoique, si ça vous interesse , voilà mon github : 
         <a href="https://github.com/THEWORLD210202">ICI</a>
     </footer>
+
+
+    <script src="./js/chatbox.js"></script>
 </body>
 </html>
